@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>技术详情 - AI智能分区多波束测深系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            min-height: 100vh;
+        }
+        
+        .tech-title {
+            font-family: 'Noto Serif SC', serif;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            transform: translateY(-2px);
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .architecture-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .architecture-node:hover {
+            transform: scale(1.1);
+        }
+        
+        .comparison-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .comparison-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #3b82f6;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+        
+        .comparison-slider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full bg-slate-900/90 backdrop-blur-sm z-50 border-b border-blue-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">AI</span>
+                    </div>
+                    <span class="text-xl font-bold">智能测深系统</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-blue-300 transition-colors">首页</a>
+                    <a href="technology.html" class="nav-link text-blue-400 hover:text-blue-300 transition-colors">技术详情</a>
+                    <a href="results.html" class="nav-link text-white hover:text-blue-300 transition-colors">成果展示</a>
+                    <a href="about.html" class="nav-link text-white hover:text-blue-300 transition-colors">关于项目</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero区域 -->
+    <section class="pt-24 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="tech-title text-5xl font-bold mb-6">技术架构与创新</h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    基于"AI深度学习+多波束测深+数字孪生仿真"三位一体技术架构，
+                    构建智能化、高精度、高效率的海洋测绘解决方案
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构图 -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">系统架构</h2>
+                <p class="text-xl text-gray-300">三位一体技术架构，协同实现智能化测绘</p>
+            </div>
+            
+            <div class="bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                <div class="relative">
+                    <img src="system-architecture.png" alt="系统架构图" class="w-full h-auto rounded-lg">
+                    
+                    <!-- 交互式架构节点 -->
+                    <div class="absolute inset-0">
+                        <!-- AI深度学习节点 -->
+                        <div class="architecture-node absolute top-1/4 left-1/4 w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center" 
+                             data-tech="ai">
+                            <span class="text-white font-bold text-sm">AI</span>
+                        </div>
+                        
+                        <!-- 多波束测深节点 -->
+                        <div class="architecture-node absolute top-1/2 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center" 
+                             data-tech="sonar">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        
+                        <!-- 数字孪生节点 -->
+                        <div class="architecture-node absolute top-1/4 right-1/4 w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center" 
+                             data-tech="digital">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 技术详情面板 -->
+                <div id="tech-details" class="mt-8 p-6 bg-slate-700/50 rounded-lg hidden">
+                    <div id="ai-details" class="tech-detail hidden">
+                        <h3 class="text-2xl font-bold text-blue-400 mb-4">AI深度学习引擎</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-white mb-2">卷积神经网络(CNN)</h4>
+                                <p class="text-gray-300">自动提取海底地形特征，包括坡度、粗糙度、深度梯度等关键参数</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-white mb-2">强化学习(DQN)</h4>
+                                <p class="text-gray-300">实时动态重规划测线，避免传统算法的局部最优问题</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="sonar-details" class="tech-detail hidden">
+                        <h3 class="text-2xl font-bold text-orange-400 mb-4">多波束测深系统</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-white mb-2">有效测宽物理建模</h4>
+                                <p class="text-gray-300">融合换能器开角、水深、坡面角构建有效测深宽度模型</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-white mb-2">AI实时适配</h4>
+                                <p class="text-gray-300">通过地形复杂度矩阵自动匹配最优测线间距</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="digital-details" class="tech-detail hidden">
+                        <h3 class="text-2xl font-bold text-green-400 mb-4">数字孪生仿真</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-white mb-2">高保真声线追踪</h4>
+                                <p class="text-gray-300">基于Bellhop模型构建虚拟测绘环境，实现测线方案动态验证</p>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-white mb-2">海洋环境模拟</h4>
+                                <p class="text-gray-300">通过Gazebo平台模拟真实海洋环境，减少现场试验成本40%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心算法详解 -->
+    <section class="py-16 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">核心算法详解</h2>
+                <p class="text-xl text-gray-300">深度学习与强化学习的完美结合</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- CNN地形特征识别 -->
+                <div class="card-hover bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">CNN地形特征识别</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-blue-400 mb-2">五维模型构建</h4>
+                            <p class="text-gray-300 text-sm">
+                                构建经纬度、水深、覆盖次数矩阵、地形复杂度矩阵的五维模型，
+                                为AI算法提供全面的输入特征
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-blue-400 mb-2">动态阈值优化</h4>
+                            <p class="text-gray-300 text-sm">
+                                引入AI动态阈值优化引擎，实时调整K-means+DBSCAN二级聚类参数，
+                                复杂区自动细分网格，平坦区保留较大网格
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-blue-400 mb-2">精度提升</h4>
+                            <p class="text-gray-300 text-sm">
+                                通过Elbow准则确定最优分区数量，用轮廓系数确保分区合理性，
+                                复杂地形误分区率从10-15%降至3.5%以下
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DQN强化学习优化 -->
+                <div class="card-hover bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">DQN强化学习优化</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-orange-400 mb-2">混合优化策略</h4>
+                            <p class="text-gray-300 text-sm">
+                                贪心算法完成核心区域初步布线 + 高效遍历技术 + 
+                                深度强化学习动态重规划
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-orange-400 mb-2">实时重规划</h4>
+                            <p class="text-gray-300 text-sm">
+                                根据声呐反馈实时重规划测线，避免传统算法局部最优问题，
+                                应对突发海底沟壑、断崖等复杂地形
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-orange-400 mb-2">效率提升</h4>
+                            <p class="text-gray-300 text-sm">
+                                经仿真验证，测线总长度减少32%，
+                                为商用场景降低30%人力与时间成本
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 测线优化对比演示 -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">测线优化对比</h2>
+                <p class="text-xl text-gray-300">传统方法 vs AI优化方法</p>
+            </div>
+            
+            <div class="bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-6">传统测线方法</h3>
+                        <img src="method-comparison.png" alt="传统测线" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">测线长度：</span>
+                                <span class="text-red-400 font-semibold">100%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">覆盖完整度：</span>
+                                <span class="text-red-400 font-semibold">80-90%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">漏测率：</span>
+                                <span class="text-red-400 font-semibold">10-20%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-6">AI优化方法</h3>
+                        <img src="ai-zoning-diagram.png" alt="AI优化测线" class="w-full h-64 object-cover rounded-lg mb-4">
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">测线长度：</span>
+                                <span class="text-green-400 font-semibold">68%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">覆盖完整度：</span>
+                                <span class="text-green-400 font-semibold">99.2%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">漏测率：</span>
+                                <span class="text-green-400 font-semibold">&lt;1%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 p-6 bg-slate-700/50 rounded-lg">
+                    <h4 class="text-xl font-bold text-white mb-4">优化效果总结</h4>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-400 mb-2">32%</div>
+                            <div class="text-gray-300">测线长度减少</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-400 mb-2">28%</div>
+                            <div class="text-gray-300">整体效率提升</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-orange-400 mb-2">30%</div>
+                            <div class="text-gray-300">成本降低</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专利优势 -->
+    <section class="py-16 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">知识产权壁垒</h2>
+                <p class="text-xl text-gray-300">双专利保护，构建核心技术壁垒</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="card-hover bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">专利一：分区策略优化</h3>
+                            <p class="text-gray-400">已授权</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-purple-400 mb-2">保护范围</h4>
+                            <p class="text-gray-300 text-sm">
+                                保护"有效测宽建模-覆盖次数分区-布线"核心流程，
+                                含AI动态适配衍生应用
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-purple-400 mb-2">技术优势</h4>
+                            <p class="text-gray-300 text-sm">
+                                构建五维模型，实现智能分区与差异化测线布设，
+                                显著提升复杂地形测绘精度
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-lg flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">专利二：精度定量调控</h3>
+                            <p class="text-gray-400">已授权</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-indigo-400 mb-2">保护范围</h4>
+                            <p class="text-gray-300 text-sm">
+                                保护"网格精度调控-高效遍历-误差优化"关键技术，
+                                含AI高效计算延伸
+                            </p>
+                        </div>
+                        
+                        <div class="bg-slate-700/50 p-4 rounded-lg">
+                            <h4 class="text-lg font-semibold text-indigo-400 mb-2">技术优势</h4>
+                            <p class="text-gray-300 text-sm">
+                                将传统全区域网格遍历简化为仅遍历有效网格，
+                                遍历效率提升40%
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center animate-on-scroll">
+                <div class="bg-slate-800/50 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-4">三层技术壁垒</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-white mb-2">专利保护</h4>
+                            <p class="text-gray-300 text-sm">双授权专利覆盖技术全链条</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-white mb-2">软件著作权</h4>
+                            <p class="text-gray-300 text-sm">核心算法软件著作权申请中</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-semibold text-white mb-2">学术论文</h4>
+                            <p class="text-gray-300 text-sm">期刊论文撰写中，形成学术壁垒</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专利证书展示 -->
+    <section class="py-16 bg-slate-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-4xl font-bold text-white mb-4">双专利证书</h2>
+                <p class="text-xl text-gray-300">核心技术获得权威认证</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="card-hover bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                    <img src="patent1.png" alt="专利证书1" class="w-full h-80 object-cover rounded-lg mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-4">一种基于分区策略的多波束测线布设优化方法</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">专利类型：</span>
+                            <span class="text-blue-400 font-semibold">发明专利</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">授权状态：</span>
+                            <span class="text-green-400 font-semibold">已授权</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">技术领域：</span>
+                            <span class="text-orange-400 font-semibold">海洋测绘</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-slate-800/50 rounded-2xl p-8 animate-on-scroll">
+                    <img src="patent2.png" alt="专利证书2" class="w-full h-80 object-cover rounded-lg mb-6">
+                    <h3 class="text-2xl font-bold text-white mb-4">一种实现水深间隔和分区模型精度定量调控的方法</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">专利类型：</span>
+                            <span class="text-blue-400 font-semibold">发明专利</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">授权状态：</span>
+                            <span class="text-green-400 font-semibold">已授权</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">技术领域：</span>
+                            <span class="text-orange-400 font-semibold">精度控制</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-slate-900 border-t border-blue-500/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                                <div class="flex items-center justify-center space-x-2 mb-4">
+                                    <!-- 页脚内容可补充 -->
+                                </div>
+                        </div>
+                </div>
+        </footer>
+        <script src="main.js"></script>
+</body>
+</html>
